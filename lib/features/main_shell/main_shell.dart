@@ -71,7 +71,7 @@ class _MainShellState extends State<MainShell>
       extendBody: true,
       body: ListenableBuilder(
         listenable: AppScope.of(context),
-        builder: (_, __) => AnimatedSwitcher(
+        builder: (_, _) => AnimatedSwitcher(
           duration: const Duration(milliseconds: 380),
           transitionBuilder: (child, anim) => FadeTransition(
             opacity: anim,

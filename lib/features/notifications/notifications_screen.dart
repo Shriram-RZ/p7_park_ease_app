@@ -78,7 +78,7 @@ class NotificationsScreen extends StatelessWidget {
                 : ListView.separated(
                     padding: const EdgeInsets.fromLTRB(20, 12, 20, 120),
                     itemCount: items.length,
-                    separatorBuilder: (_, __) => const SizedBox(height: 10),
+                    separatorBuilder: (_, _) => const SizedBox(height: 10),
                     itemBuilder: (_, i) {
                       final n = items[i];
                       final color = _colorFor(n.type);

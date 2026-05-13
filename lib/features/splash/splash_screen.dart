@@ -111,7 +111,7 @@ class _SplashScreenState extends State<SplashScreen>
             child: Center(
               child: AnimatedBuilder(
                 animation: _ctrl,
-                builder: (_, __) => Opacity(
+                builder: (_, _) => Opacity(
                   opacity: (_ctrl.value * 1.4 - 0.4).clamp(0.0, 1.0),
                   child: Text(
                     'Offline · Realtime · Premium',

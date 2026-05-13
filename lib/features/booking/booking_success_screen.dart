@@ -55,7 +55,7 @@ class _BookingSuccessScreenState extends State<BookingSuccessScreen>
             child: IgnorePointer(
               child: AnimatedBuilder(
                 animation: _particles,
-                builder: (_, __) => CustomPaint(
+                builder: (_, _) => CustomPaint(
                   painter: _ConfettiPainter(t: _particles.value),
                 ),
               ),

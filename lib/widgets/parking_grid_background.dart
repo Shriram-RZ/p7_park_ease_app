@@ -39,7 +39,7 @@ class _ParkingGridBackgroundState extends State<ParkingGridBackground>
     return RepaintBoundary(
       child: AnimatedBuilder(
         animation: _ctrl,
-        builder: (_, __) => CustomPaint(
+        builder: (_, _) => CustomPaint(
           size: Size.infinite,
           painter: _GridPainter(
             t: _ctrl.value,

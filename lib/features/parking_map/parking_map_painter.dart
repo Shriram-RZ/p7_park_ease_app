@@ -54,7 +54,7 @@ class ParkingMapPainter extends CustomPainter {
     return Rect.fromLTWH(tl.dx, tl.dy, slotW, slotH);
   }
 
-  PFSlot? hitTest(Offset local) {
+  PFSlot? slotAt(Offset local) {
     for (final s in slots) {
       if (_slotRect(s).inflate(2).contains(local)) return s;
     }

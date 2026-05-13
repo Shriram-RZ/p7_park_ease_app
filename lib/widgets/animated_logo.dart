@@ -35,7 +35,7 @@ class _AnimatedLogoState extends State<AnimatedLogo>
       height: widget.size,
       child: AnimatedBuilder(
         animation: _ctrl,
-        builder: (_, __) => CustomPaint(
+        builder: (_, _) => CustomPaint(
           painter: _LogoPainter(t: _ctrl.value, spin: widget.spin),
         ),
       ),
@@ -112,7 +112,7 @@ class _LogoPainter extends CustomPainter {
       canvas.rotate(sin(t * 2 * pi) * 0.04);
     }
     final stem = RRect.fromRectAndRadius(
-      Rect.fromCenter(center: const Offset(-r * 0.18, 0), width: r * 0.18, height: r * 0.96),
+      Rect.fromCenter(center: Offset(-r * 0.18, 0), width: r * 0.18, height: r * 0.96),
       Radius.circular(r * 0.08),
     );
     canvas.drawRRect(stem, glyph);

@@ -21,7 +21,7 @@ class ParkFlowApp extends StatelessWidget {
       state: state,
       child: ListenableBuilder(
         listenable: state,
-        builder: (_, __) => MaterialApp(
+        builder: (_, _) => MaterialApp(
           title: 'ParkFlow',
           debugShowCheckedModeBanner: false,
           theme: PFTheme.light(),

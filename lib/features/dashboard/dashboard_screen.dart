@@ -165,7 +165,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         onTap: () => state.setActiveVehicle(v.id),
                       );
                     },
-                    separatorBuilder: (_, __) => const SizedBox(width: 12),
+                    separatorBuilder: (_, _) => const SizedBox(width: 12),
                     itemCount: vehicles.length + 1,
                   ),
                 ),
@@ -187,7 +187,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 padding: const EdgeInsets.fromLTRB(20, 8, 20, 140),
                 sliver: SliverList.separated(
                   itemCount: min(3, state.bookings.all().length),
-                  separatorBuilder: (_, __) => const SizedBox(height: 10),
+                  separatorBuilder: (_, _) => const SizedBox(height: 10),
                   itemBuilder: (_, i) {
                     final b = state.bookings.all()[i];
                     return _HistoryRow(booking: b);

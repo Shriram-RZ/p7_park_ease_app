@@ -44,7 +44,7 @@ class _PFPrimaryButtonState extends State<PFPrimaryButton>
     final disabled = widget.onPressed == null || widget.loading;
     final child = AnimatedBuilder(
       animation: _ctrl,
-      builder: (_, __) => Transform.scale(
+      builder: (_, _) => Transform.scale(
         scale: _ctrl.value,
         child: Container(
           height: 58,

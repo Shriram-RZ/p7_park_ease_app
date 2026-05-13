@@ -27,7 +27,7 @@ class PFBarChart extends StatelessWidget {
       tween: Tween<double>(begin: 0, end: 1),
       duration: const Duration(milliseconds: 900),
       curve: Curves.easeOutCubic,
-      builder: (_, t, __) => SizedBox(
+      builder: (_, t, _) => SizedBox(
         height: height,
         child: CustomPaint(
           painter: _BarPainter(
@@ -151,7 +151,7 @@ class PFDonutChart extends StatelessWidget {
         tween: Tween<double>(begin: 0, end: value.clamp(0.0, 1.0)),
         duration: const Duration(milliseconds: 900),
         curve: Curves.easeOutCubic,
-        builder: (_, v, __) => CustomPaint(
+        builder: (_, v, _) => CustomPaint(
           painter: _DonutPainter(
             value: v,
             color: color,
@@ -241,7 +241,7 @@ class PFLineChart extends StatelessWidget {
       tween: Tween<double>(begin: 0, end: 1),
       duration: const Duration(milliseconds: 1000),
       curve: Curves.easeOutCubic,
-      builder: (_, t, __) => SizedBox(
+      builder: (_, t, _) => SizedBox(
         height: height,
         child: CustomPaint(
           painter: _LinePainter(values: values, color: color, t: t),

@@ -18,7 +18,7 @@ class AnimatedCounter extends StatelessWidget {
       tween: Tween<double>(begin: 0, end: value.toDouble()),
       duration: duration,
       curve: Curves.easeOutCubic,
-      builder: (_, v, __) => Text(
+      builder: (_, v, _) => Text(
         v.isFinite
             ? (value is int ? v.round().toString() : v.toStringAsFixed(1))
             : '—',

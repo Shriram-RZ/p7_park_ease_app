@@ -101,10 +101,10 @@ Route<dynamic>? appOnGenerateRoute(RouteSettings settings) {
 }
 
 PageRoute<T> _shared<T>(Widget page) => PageRouteBuilder<T>(
-      pageBuilder: (_, __, ___) => page,
+      pageBuilder: (_, _, _) => page,
       transitionDuration: const Duration(milliseconds: 380),
       reverseTransitionDuration: const Duration(milliseconds: 280),
-      transitionsBuilder: (_, anim, __, child) {
+      transitionsBuilder: (_, anim, _, child) {
         final curved =
             CurvedAnimation(parent: anim, curve: Curves.easeOutCubic);
         return FadeTransition(
@@ -121,8 +121,8 @@ PageRoute<T> _shared<T>(Widget page) => PageRouteBuilder<T>(
     );
 
 PageRoute<T> _fade<T>(Widget page) => PageRouteBuilder<T>(
-      pageBuilder: (_, __, ___) => page,
+      pageBuilder: (_, _, _) => page,
       transitionDuration: const Duration(milliseconds: 480),
-      transitionsBuilder: (_, anim, __, child) =>
+      transitionsBuilder: (_, anim, _, child) =>
           FadeTransition(opacity: anim, child: child),
     );

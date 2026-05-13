@@ -85,7 +85,7 @@ class _QrScannerScreenState extends State<QrScannerScreen>
           Center(
             child: AnimatedBuilder(
               animation: Listenable.merge([_beam, _ring]),
-              builder: (_, __) => _ScanFrame(
+              builder: (_, _) => _ScanFrame(
                 beam: _beam.value,
                 ring: _ring.value,
                 state: _state,

@@ -138,7 +138,7 @@ class _ParkingMapScreenState extends State<ParkingMapScreen>
                       padding: const EdgeInsets.all(8),
                       child: ListenableBuilder(
                         listenable: state,
-                        builder: (_, __) => InteractiveViewer(
+                        builder: (_, _) => InteractiveViewer(
                           transformationController: _transformCtrl,
                           minScale: 0.5,
                           maxScale: 3.0,
@@ -146,7 +146,7 @@ class _ParkingMapScreenState extends State<ParkingMapScreen>
                           child: AnimatedBuilder(
                             animation: Listenable.merge(
                                 [_pulse, _carT, _routeT]),
-                            builder: (_, __) => GestureDetector(
+                            builder: (_, _) => GestureDetector(
                               behavior: HitTestBehavior.opaque,
                               onTapUp: (d) {
                                 final painter = ParkingMapPainter(
@@ -158,7 +158,7 @@ class _ParkingMapScreenState extends State<ParkingMapScreen>
                                   dark: context.isDark,
                                   routeTarget: _selectedId,
                                 );
-                                final hit = painter.hitTest(d.localPosition);
+                                final hit = painter.slotAt(d.localPosition);
                                 if (hit != null) {
                                   setState(() => _selectedId = hit.id);
                                   _showSlotSheet(hit);

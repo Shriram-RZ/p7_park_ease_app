@@ -119,7 +119,7 @@ class _NavigationScreenState extends State<NavigationScreen>
                       padding: const EdgeInsets.all(16),
                       child: AnimatedBuilder(
                         animation: Listenable.merge([_routeCtrl, _walker]),
-                        builder: (_, __) => CustomPaint(
+                        builder: (_, _) => CustomPaint(
                           painter: _NavMapPainter(
                             t: _routeCtrl.value,
                             walker: _walker.value,
