@@ -144,10 +144,12 @@ class _GridPainter extends CustomPainter {
       );
     }
 
-    // Drifting cars (rounded rects).
-    final carPaint = Paint()..color = tint.withValues(alpha: 0.85);
+    // Drifting cars (rounded rects). Softer on light so they read as subtle
+    // accents rather than solid green blocks on a near-white canvas.
+    final carPaint = Paint()
+      ..color = tint.withValues(alpha: (dark ? 0.85 : 0.45) * intensity);
     final glowPaint = Paint()
-      ..color = tint.withValues(alpha: 0.35)
+      ..color = tint.withValues(alpha: (dark ? 0.35 : 0.18) * intensity)
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 12);
     final rng = Random(7);
     for (int i = 0; i < 6; i++) {

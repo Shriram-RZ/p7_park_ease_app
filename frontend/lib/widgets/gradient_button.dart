@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../core/theme.dart';
 
@@ -52,19 +53,16 @@ class _PFPrimaryButtonState extends State<PFPrimaryButton>
           padding: const EdgeInsets.symmetric(horizontal: 24),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(PFRadii.md),
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: disabled
-                  ? [
+            gradient: disabled
+                ? LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
                       PFColors.brand.withValues(alpha: 0.35),
                       PFColors.brandGlow.withValues(alpha: 0.25),
-                    ]
-                  : const [
-                      PFColors.brand,
-                      PFColors.brandGlow,
                     ],
-            ),
+                  )
+                : PFGradients.brand,
             boxShadow: disabled
                 ? null
                 : [
@@ -95,7 +93,7 @@ class _PFPrimaryButtonState extends State<PFPrimaryButton>
                       ],
                       Text(
                         widget.label,
-                        style: const TextStyle(
+                        style: GoogleFonts.inter(
                           color: Colors.white,
                           fontSize: 15,
                           fontWeight: FontWeight.w800,

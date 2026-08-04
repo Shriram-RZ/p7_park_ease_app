@@ -53,28 +53,31 @@ class AnalyticsScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: _StatBlock(
-                          icon: Icons.timer_rounded,
-                          label: 'Avg duration',
-                          value: avgMinutes == 0
-                              ? '—'
-                              : Duration(minutes: avgMinutes).humanLabel,
-                          accent: PFColors.brand,
+                  IntrinsicHeight(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Expanded(
+                          child: _StatBlock(
+                            icon: Icons.timer_rounded,
+                            label: 'Avg duration',
+                            value: avgMinutes == 0
+                                ? '—'
+                                : Duration(minutes: avgMinutes).humanLabel,
+                            accent: PFColors.brand,
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: _StatBlock(
-                          icon: Icons.event_available_rounded,
-                          label: 'Total sessions',
-                          value: '${bookings.length}',
-                          accent: PFColors.info,
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: _StatBlock(
+                            icon: Icons.event_available_rounded,
+                            label: 'Total sessions',
+                            value: '${bookings.length}',
+                            accent: PFColors.info,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 12),
                   const SectionHeader(
@@ -167,12 +170,19 @@ class _StatBlock extends StatelessWidget {
             child: Icon(icon, color: accent, size: 18),
           ),
           const SizedBox(height: 10),
-          Text(value,
-              style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: -0.4)),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Text(value,
+                maxLines: 1,
+                style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: -0.4)),
+          ),
           Text(label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: context.text.bodySmall?.copyWith(
                 color: context.scheme.onSurfaceVariant,
               )),

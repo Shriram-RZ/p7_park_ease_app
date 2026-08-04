@@ -30,13 +30,15 @@ class GlassCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = Theme.of(context).brightness == Brightness.dark;
+    // Light mode: glass over a near-white bg has nothing to refract, so a more
+    // opaque tint + a visible cool border read as a crisp elevated card.
     final tint = dark
         ? const Color(0xFF0F1B19).withValues(alpha: 0.55)
-        : Colors.white.withValues(alpha: 0.65);
+        : Colors.white.withValues(alpha: 0.86);
     final border = borderColor ??
         (dark
             ? Colors.white.withValues(alpha: 0.06)
-            : Colors.black.withValues(alpha: 0.05));
+            : const Color(0xFF0F172A).withValues(alpha: 0.08));
     return Container(
       height: height,
       width: width,
@@ -52,9 +54,9 @@ class GlassCard extends StatelessWidget {
           BoxShadow(
             color: dark
                 ? const Color(0xCC000000)
-                : Colors.black.withValues(alpha: 0.06),
-            blurRadius: 28,
-            offset: const Offset(0, 14),
+                : const Color(0xFF0F172A).withValues(alpha: 0.10),
+            blurRadius: 24,
+            offset: const Offset(0, 10),
           ),
         ],
       ),

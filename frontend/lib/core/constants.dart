@@ -11,8 +11,8 @@ class PFConstants {
   static const Duration simulationTick = Duration(seconds: 3);
 
   // Offline fee simulation (per hour, in chosen currency unit).
-  static const double feePerHour = 4.50;
-  static const String currencySymbol = '\$';
+  static const double feePerHour = 40.0;
+  static const String currencySymbol = '₹'; // ₹
 
   // Backend base URL. Override locally with:
   //   flutter run --dart-define=API_BASE_URL=http://localhost:5000

@@ -8,6 +8,7 @@ import '../../app/router.dart';
 import '../../core/extensions.dart';
 import '../../core/theme.dart';
 import '../../data/models/ticket.dart';
+import '../../widgets/empty_state.dart';
 import '../../widgets/glass_card.dart';
 import '../../widgets/gradient_button.dart';
 import '../../widgets/parking_grid_background.dart';
@@ -67,7 +68,17 @@ class _TicketsScreenState extends State<TicketsScreen> {
                   ),
                 ),
                 if (tickets.isEmpty)
-                  Expanded(child: _EmptyTickets())
+                  Expanded(
+                    child: PFEmptyState(
+                      icon: Icons.qr_code_2_rounded,
+                      title: 'No tickets yet',
+                      message:
+                          'Reserve a slot to receive a wallet-style pass.',
+                      actionLabel: 'Reserve a slot',
+                      onAction: () => Navigator.of(context)
+                          .pushNamed(AppRoutes.parkingMap),
+                    ),
+                  )
                 else
                   Expanded(
                     child: PageView.builder(
@@ -119,46 +130,6 @@ class _TicketsScreenState extends State<TicketsScreen> {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _EmptyTickets extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(32),
-        child: GlassCard(
-          padding: const EdgeInsets.all(26),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(18),
-                decoration: BoxDecoration(
-                  color: PFColors.brand.withValues(alpha: 0.16),
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: const Icon(Icons.qr_code_2_rounded,
-                    color: PFColors.brand, size: 48),
-              ),
-              const SizedBox(height: 16),
-              const Text('No tickets yet',
-                  style: TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.w800)),
-              const SizedBox(height: 6),
-              Text(
-                'Reserve a slot to receive a wallet-style pass.',
-                textAlign: TextAlign.center,
-                style: context.text.bodyMedium?.copyWith(
-                  color: context.scheme.onSurfaceVariant,
-                ),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

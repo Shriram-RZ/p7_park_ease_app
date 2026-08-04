@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart' show CupertinoPageTransitionsBuilder;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// ParkFlow design system — futuristic offline-first smart parking palette.
 class PFColors {
@@ -88,6 +89,18 @@ class PFShadows {
       ];
 }
 
+/// The brand gradient, named once (replaces inline [brand, brandGlow]
+/// literals duplicated across avatars, buttons, hero cards).
+class PFGradients {
+  PFGradients._();
+
+  static const LinearGradient brand = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [PFColors.brand, PFColors.brandGlow],
+  );
+}
+
 class PFTheme {
   PFTheme._();
 
@@ -167,13 +180,33 @@ class PFTheme {
       ),
     ).apply(bodyColor: text, displayColor: text);
 
+    // Premium type pairing: Sora (geometric) for display/headline/title,
+    // Inter (legible) for body/label. Sizes/weights/spacing preserved above.
+    final TextTheme fontedTextTheme = textTheme.copyWith(
+      displayLarge: GoogleFonts.sora(textStyle: textTheme.displayLarge),
+      displayMedium: GoogleFonts.sora(textStyle: textTheme.displayMedium),
+      displaySmall: GoogleFonts.sora(textStyle: textTheme.displaySmall),
+      headlineLarge: GoogleFonts.sora(textStyle: textTheme.headlineLarge),
+      headlineMedium: GoogleFonts.sora(textStyle: textTheme.headlineMedium),
+      headlineSmall: GoogleFonts.sora(textStyle: textTheme.headlineSmall),
+      titleLarge: GoogleFonts.sora(textStyle: textTheme.titleLarge),
+      titleMedium: GoogleFonts.inter(textStyle: textTheme.titleMedium),
+      titleSmall: GoogleFonts.inter(textStyle: textTheme.titleSmall),
+      bodyLarge: GoogleFonts.inter(textStyle: textTheme.bodyLarge),
+      bodyMedium: GoogleFonts.inter(textStyle: textTheme.bodyMedium),
+      bodySmall: GoogleFonts.inter(textStyle: textTheme.bodySmall),
+      labelLarge: GoogleFonts.inter(textStyle: textTheme.labelLarge),
+      labelMedium: GoogleFonts.inter(textStyle: textTheme.labelMedium),
+      labelSmall: GoogleFonts.inter(textStyle: textTheme.labelSmall),
+    );
+
     return ThemeData(
       useMaterial3: true,
       brightness: brightness,
       colorScheme: scheme,
       scaffoldBackgroundColor: bg,
       canvasColor: bg,
-      textTheme: textTheme,
+      textTheme: fontedTextTheme,
       splashFactory: InkSparkle.splashFactory,
       pageTransitionsTheme: const PageTransitionsTheme(
         builders: {
@@ -239,7 +272,7 @@ class PFTheme {
             borderRadius: BorderRadius.circular(PFRadii.md),
           ),
           textStyle:
-              const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
+              GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w700),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
@@ -251,14 +284,14 @@ class PFTheme {
             borderRadius: BorderRadius.circular(PFRadii.md),
           ),
           textStyle:
-              const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+              GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w600),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: PFColors.brand,
           textStyle:
-              const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+              GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w700),
         ),
       ),
       snackBarTheme: SnackBarThemeData(

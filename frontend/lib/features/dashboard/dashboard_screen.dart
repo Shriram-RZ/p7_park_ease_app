@@ -219,11 +219,7 @@ class _Avatar extends StatelessWidget {
       height: 48,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [PFColors.brand, PFColors.brandGlow],
-        ),
+        gradient: PFGradients.brand,
         boxShadow: [
           BoxShadow(
             color: PFColors.brand.withValues(alpha: 0.4),
@@ -385,7 +381,10 @@ class _ActiveBookingPulseCardState extends State<_ActiveBookingPulseCard> {
         return GlassCard(
           glow: PFColors.brand,
           padding: const EdgeInsets.all(20),
-          child: Row(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+          Row(
             children: [
               SizedBox(
                 width: 96,
@@ -442,9 +441,49 @@ class _ActiveBookingPulseCardState extends State<_ActiveBookingPulseCard> {
               ),
             ],
           ),
+              const SizedBox(height: 16),
+              OutlinedButton.icon(
+                onPressed: () => _confirmCancel(context),
+                icon: const Icon(Icons.cancel_outlined, size: 18),
+                label: const Text('Cancel reservation'),
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: PFColors.danger,
+                  side: BorderSide(
+                      color: PFColors.danger.withValues(alpha: 0.5)),
+                ),
+              ),
+            ],
+          ),
         );
       },
     );
+  }
+
+  Future<void> _confirmCancel(BuildContext context) async {
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Cancel reservation?'),
+        content: Text(
+            'Slot ${widget.booking.slotLabel} will be released. This cannot be undone.'),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: const Text('Keep')),
+          TextButton(
+              onPressed: () => Navigator.pop(ctx, true),
+              style: TextButton.styleFrom(foregroundColor: PFColors.danger),
+              child: const Text('Cancel reservation')),
+        ],
+      ),
+    );
+    if (ok != true || !context.mounted) return;
+    await AppScope.of(context).cancelBooking(widget.booking);
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Reservation cancelled')),
+      );
+    }
   }
 }
 
